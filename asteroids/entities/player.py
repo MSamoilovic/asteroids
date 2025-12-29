@@ -1,10 +1,17 @@
 import pygame
 from pygame import Color
 
-from circleshape import CircleShape
-from shot import Shot
-from constants import PLAYER_RADIUS, LINE_WIDTH, PLAYER_TURN_SPEED, PLAYER_SPEED, SHOT_RADIUS, PLAYER_SHOT_SPEED, \
-    PLAYER_SHOOT_COOLDOWN_SECONDS
+from asteroids.graphics.circleshape import CircleShape
+from asteroids.entities.shot import Shot
+from asteroids.utils.constants import (
+    PLAYER_RADIUS,
+    LINE_WIDTH,
+    PLAYER_TURN_SPEED,
+    PLAYER_SPEED,
+    SHOT_RADIUS,
+    PLAYER_SHOT_SPEED,
+    PLAYER_SHOOT_COOLDOWN_SECONDS,
+)
 
 
 class Player(CircleShape):

@@ -108,8 +108,10 @@ def log_state():
     }
 
     # New log file on each run
+    import os
+    os.makedirs("logs", exist_ok=True)
     mode = "w" if not _state_log_initialized else "a"
-    with open("game_state.jsonl", mode) as f:
+    with open("logs/game_state.jsonl", mode) as f:
         f.write(json.dumps(entry) + "\n")
 
     _state_log_initialized = True
@@ -128,8 +130,10 @@ def log_event(event_type, **details):
         **details,
     }
 
+    import os
+    os.makedirs("logs", exist_ok=True)
     mode = "w" if not _event_log_initialized else "a"
-    with open("game_events.jsonl", mode) as f:
+    with open("logs/game_events.jsonl", mode) as f:
         f.write(json.dumps(event) + "\n")
 
     _event_log_initialized = True

@@ -1,12 +1,10 @@
 import pygame
 import sys
 
-from asteroid import Asteroid
-from asteroidfield import AsteroidField
-from constants import SCREEN_WIDTH, SCREEN_HEIGHT
-from logger import log_state, log_event
-from player import Player
-from shot import Shot
+from asteroids.entities import Asteroid, Player, Shot
+from asteroids.game import AsteroidField
+from asteroids.utils.constants import SCREEN_WIDTH, SCREEN_HEIGHT
+from asteroids.utils.logger import log_state, log_event
 
 
 def main():
