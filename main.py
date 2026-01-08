@@ -41,14 +41,22 @@ def main():
 
         updatable.update(dt)
 
+        # Collision detection sa player-om (samo ako nije invincible)
+        if not player.invincible:
+            for asteroid in asteroids:
+                if asteroid.collides_with(player):
+                    log_event("player_hit")
+                    game_state.lives -= 1
+                    
+                    if game_state.lives <= 0:
+                        game_state.game_over = True
+                        print("Game Over! Final Score:", game_state.score)
+                        sys.exit()
+                    else:
+                        player.respawn(SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2)
 
+        # Collision detection između shot-ova i asteroida
         for asteroid in asteroids:
-            if asteroid.collides_with(player):
-                log_event("player_hit")
-                print("Game over!")
-                print(f"Score: {game_state.score}")
-                sys.exit()
-
             for shot in shots:
                 if asteroid.collides_with(shot):
                     log_event("asteroid_shot")
@@ -60,6 +68,9 @@ def main():
         font = pygame.font.Font(None, 36)
         score_text = font.render(f"Score: {game_state.score}", True, "white")
         screen.blit(score_text, (10, 10))
+        
+        lives_text = font.render(f"Lives: {game_state.lives}", True, "white")
+        screen.blit(lives_text, (10, 50))
 
         for thing in drawable:
             thing.draw(screen)
